@@ -50,10 +50,14 @@ namespace CSharpToMySQLtestApp
 
         private void addEvent()
         {
-            string query = "INSERT INTO event(`place`, `date_in`, `tag_ID`) VALUES ('"+ textBoxPlace.Text + "', '" + DateTime.Now + "', '" + textBoxTag.Text + "')";
+            DateTime theDate = DateTime.Now;
+            theDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+            string query = "INSERT INTO event(`place`, `date_in`, `tag_ID`) VALUES ('"+ textBoxPlace.Text + "', '" + theDate.ToString("yyyy-MM-dd H:mm:ss") + "', '" + textBoxTag.Text + "')";
 
             MySqlConnection databaseConnection = new MySqlConnection(MySQLConnStr);
             MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
+
 
             try
             {
